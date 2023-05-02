@@ -1,0 +1,40 @@
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <div>
+        <img class="logo" src="https://cdn-icons-png.flaticon.com/512/201/201833.png" width="105" height="100">
+      </div>
+      <hr />
+      <div class="d-flex flex-column flex-shrink-0 p-3">
+        <mat-nav-list class="navItems">
+          <a mat-list-item [routerLink]="link.path" *ngFor="let link of routerLinks">
+            <mat-icon>{{ link.icon }}</mat-icon>
+            <span>{{ link.title }}</span>
+          </a>         
+        </mat-nav-list>          
+        <mat-nav-list class="logout">
+          <a (click)="logout()" mat-list-item>
+            <mat-icon>logout</mat-icon>
+            <span>Cerrar sesión</span>
+          </a>         
+        </mat-nav-list>           
+      </div>
+      <div class="nameFoot">
+        <hr />
+        <div>       
+          <p>Johana Herrera</p>
+        </div>
+      </div>  
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+        <mat-toolbar class="toolbar">
+            <button (click)="drawer.toggle()" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <span class="snTitle">Proyecto Final</span>
+        </mat-toolbar>  
+        <main>
+          <router-outlet></router-outlet>
+        </main> 
+    </div>
+  </mat-drawer-container>  

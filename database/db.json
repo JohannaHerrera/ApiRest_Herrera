@@ -1,0 +1,92 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "firstName": "Johanna",
+      "lastName": "Herrera",
+      "email": "johanna@mail.com",
+      "password": "123456",
+      "token": "hjsdfJHFDSAFMsaDsan12sdanjjadashj3FDBEWH",
+      "role": "admin"
+    }
+  ],
+  "alumnos": [
+    {
+      "id": 1,
+      "firstName": "Pedro",
+      "lastName": "Cáceres",
+      "age": 15,
+      "grade": 9
+    },
+    {
+      "id": 2,
+      "firstName": "Katherine",
+      "lastName": "Balladares",
+      "age": 14,
+      "grade": 10
+    },
+    {
+      "id": 3,
+      "firstName": "Alejandro",
+      "lastName": "Navarro",
+      "age": 15,
+      "grade": 10
+    },
+    {
+      "id": 4,
+      "firstName": "Liliana",
+      "lastName": "Fernández",
+      "age": 15,
+      "grade": 8
+    },
+    {
+      "id": 5,
+      "firstName": "Michael",
+      "lastName": "Hidalgo",
+      "age": 16,
+      "grade": 7
+    }
+  ],
+  "cursos": [
+    {
+      "id": 1,
+      "name": "Matemática",
+      "description": "Curso de Matemática I",
+      "startDate": "04/15/2023",
+      "endDate": "09/30/2023"
+    },
+    {
+      "id": 2,
+      "name": "Literatura",
+      "description": "Curso de Lengua y Literatura",
+      "startDate": "03/01/2023",
+      "endDate": "07/31/2023"
+    },
+    {
+      "id": 3,
+      "name": "Inglés",
+      "description": "Curso de Inglés B2",
+      "startDate": "02/15/2023",
+      "endDate": "05/31/2023"
+    },
+    {
+      "id": 4,
+      "name": "Biología",
+      "description": "Curso de Biología Molecular",
+      "startDate": "04/01/2023",
+      "endDate": "08/31/2023"
+    }
+  ],
+  "inscripciones": [
+    {
+      "id": 1,
+      "idAlumno": 1,
+      "idCurso": 1
+    },
+    {
+      "id": 2,
+      "idAlumno": 2,
+      "idCurso": 1
+    }
+  ]
+}

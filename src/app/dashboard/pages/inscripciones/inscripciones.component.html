@@ -1,0 +1,66 @@
+<div class="container-md">
+    <div>
+      <h3>Lista de Inscripciones</h3>
+    </div>
+    <div>
+      <button (click)="createInscripcion()" mat-flat-button color="primary">
+        <mat-icon>add</mat-icon>
+        Agregar inscripción
+      </button>
+    </div>
+    <br />
+    <div>
+      <table mat-table [dataSource]="insDetList" class="mat-elevation-z8">
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th appTitles mat-header-cell *matHeaderCellDef>Id.</th>
+          <td mat-cell *matCellDef="let inscripcion">{{ inscripcion.id }}</td>
+        </ng-container>
+  
+        <!-- Alumno Column -->
+        <ng-container matColumnDef="idAlumno">
+          <th appTitles mat-header-cell *matHeaderCellDef>Alumno</th>
+          <td mat-cell *matCellDef="let inscripcion">{{ inscripcion.alumno }}</td>
+        </ng-container>
+  
+        <!-- Curso Column -->
+        <ng-container matColumnDef="idCurso">
+          <th appTitles mat-header-cell *matHeaderCellDef>Curso</th>
+          <td mat-cell *matCellDef="let inscripcion">{{ inscripcion.curso }}</td>
+        </ng-container>
+
+        <!-- View Column -->
+        <ng-container matColumnDef="view">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let inscripcion">
+            <button (click)="view(inscripcion)" mat-mini-fab class="viewButton">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let inscripcion">
+            <button (click)="edit(inscripcion)" mat-mini-fab color="primary">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Delete Column -->
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let inscripcion">
+            <button (click)="delete(inscripcion.id)" mat-mini-fab color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+</div>  

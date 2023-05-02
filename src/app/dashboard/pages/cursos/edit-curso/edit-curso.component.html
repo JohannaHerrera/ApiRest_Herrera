@@ -1,0 +1,41 @@
+<div class="container-md">
+    <div>
+        <p class="title">Editar Curso</p>
+    </div>
+    <div mat-dialog-content>
+        <form [formGroup]="registerForm">
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Nombre:</mat-label>
+                    <input [formControl]="nameControl" type="text" matInput>
+                    <mat-error *ngFor="let error of nameControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Descripción:</mat-label>
+                    <input [formControl]="descriptionControl" type="text" matInput>
+                    <mat-error *ngFor="let error of descriptionControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field>
+                    <mat-label>Fecha Inicio:</mat-label>
+                    <input [formControl]="startDateControl" type="date" matInput>
+                    <mat-error *ngFor="let error of startDateControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="fill" class="example-form-field">
+                    <mat-label>Fecha Fin:</mat-label>
+                    <input [formControl]="endDateControl" type="date" matInput>                       
+                    <mat-error *ngFor="let error of endDateControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                </mat-form-field>
+            </div>               
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="buttons">
+    <button mat-dialog-close mat-flat-button color="primary">Cancelar</button>
+    <button (click)="save()" mat-flat-button color="warn">Guardar</button>
+</div>

@@ -1,0 +1,43 @@
+<div class="container-md">
+    <div>
+        <p class="title">Nuevo Alumno</p>
+    </div>
+    <div mat-dialog-content>
+        <form [formGroup]="registerForm">
+            <div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Nombre:</mat-label>
+                        <input [formControl]="firstNameControl" type="text" matInput>
+                        <mat-error *ngFor="let error of firstNameControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Apellido:</mat-label>
+                        <input [formControl]="lastNameControl" type="text" matInput>
+                        <mat-error *ngFor="let error of lastNameControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Edad:</mat-label>
+                        <input [formControl]="ageControl" type="number" matInput>
+                        <mat-error *ngFor="let error of ageControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Calificación:</mat-label>
+                        <input [formControl]="gradeControl" type="number" matInput>
+                        <mat-error *ngFor="let error of gradeControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                    </mat-form-field>
+                </div>   
+            </div>                        
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="buttons">
+    <button mat-dialog-close mat-flat-button color="primary">Cancelar</button>
+    <button (click)="save()" mat-flat-button color="warn">Guardar</button>
+</div>

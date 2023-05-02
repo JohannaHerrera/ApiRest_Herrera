@@ -1,0 +1,80 @@
+<div class="container-md">
+    <div>
+        <h3>Detalles del Curso</h3>
+    </div>
+    <div class="container-md">       
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <p class="titleCard">Datos del Curso</p>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col">
+                                <p class="lblTitle">Nombre:</p>
+                            </div>    
+                            <div class="col">
+                                <p>{{ curso?.name }}</p>
+                            </div>        
+                        </div>
+                        <div class="row">           
+                            <div class="col">
+                                <p class="lblTitle">Descripción:</p>
+                            </div>    
+                            <div class="col">
+                                <p>{{ curso?.description }}</p>
+                            </div>              
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="lblTitle">Fecha Inicio:</p>
+                            </div>    
+                            <div class="col">
+                                <p>{{ curso?.startDate | date: 'MM/dd/yyyy' }}</p>
+                            </div>  
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <p class="lblTitle">Fecha Fin:</p>
+                            </div>    
+                            <div class="col">
+                                <p>{{ curso?.endDate | date: 'MM/dd/yyyy' }}</p>
+                            </div>  
+                        </div>            
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <p class="titleCard">Alumnos inscritos</p>
+                        </div>
+                        <hr>
+                        <div *ngIf="haveAlumnos; else elseBlock">
+                            <ul class="list-group">
+                                <li *ngFor="let ins of insDetList" class="list-group-item">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>{{ ins.alumno }}</p>
+                                        </div>
+                                        <div class="col">
+                                            <button (click)="deleteIns(ins.id)" mat-flat-button color="primary">Desinscribir</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>                            
+                        </div>
+                        <ng-template #elseBlock>
+                            <p>Actualmente no hay alumnos inscritos.</p>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2"></div>
+        </div>   
+    </div>
+</div>

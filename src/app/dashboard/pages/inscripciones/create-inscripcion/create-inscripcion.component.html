@@ -1,0 +1,37 @@
+<div class="container-md">
+    <div>
+        <p class="title">Nueva Inscripción</p>
+    </div>
+    <div mat-dialog-content>
+        <form [formGroup]="registerForm">
+            <div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Alumno:</mat-label>
+                        <mat-select [formControl]="alumnoControl" >
+                            <mat-option *ngFor="let alumno of alumnosList" [value]="alumno.id">
+                              {{ alumno | fullname }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngFor="let error of alumnoControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field>
+                        <mat-label>Curso:</mat-label>
+                        <mat-select [formControl]="cursoControl">
+                            <mat-option *ngFor="let curso of cursosList" [value]="curso.id">
+                              {{ curso.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngFor="let error of cursoControl.errors | keyvalue">{{ error | controlErrors }}</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>                        
+        </form>
+    </div>
+</div>
+<div mat-dialog-actions class="buttons">
+    <button mat-dialog-close mat-flat-button color="primary">Cancelar</button>
+    <button (click)="save()" mat-flat-button color="warn">Guardar</button>
+</div>

@@ -1,0 +1,26 @@
+<div class="container-md">
+    <div>
+        <p class="title">Detalles de la Inscripción</p>
+    </div>
+    <div mat-dialog-content>
+        <div class="row">
+            <div class="col">
+                <mat-label class="lblTitle">Alumno:</mat-label>
+            </div>    
+            <div class="col">
+                <mat-label>{{ alumno?.firstName + ' ' +  alumno?.lastName}}</mat-label>
+            </div>        
+        </div>
+        <div class="row">           
+            <div class="col">
+                <mat-label  class="lblTitle">Curso:</mat-label>
+            </div>    
+            <div class="col">
+                <mat-label>{{ curso?.name }}</mat-label>
+            </div>              
+        </div>                   
+    </div>
+</div>
+<div mat-dialog-actions class="buttons">
+    <button mat-dialog-close mat-flat-button color="primary">Cerrar</button>
+</div>
