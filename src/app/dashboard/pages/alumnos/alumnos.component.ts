@@ -35,19 +35,8 @@ export class AlumnosComponent implements OnInit{
     const dialog = this.matDialog.open(CreateAlumnosComponent);
     dialog.afterClosed().subscribe((value) => {
       if(value){
-        let idAl = 0;
-        if(this.dataSource.data.length === 0){
-          idAl = 1;
-        }
-        else{
-          idAl = this.dataSource.data[this.dataSource.data.length-1].id + 1;
-        }
-        this.alumnosService.createAlumno(
-          {
-            ...value,
-            id: idAl
-          }).subscribe((alumnos) => {
-              this.dataSource.data = alumnos;
+        this.alumnosService.createAlumno(value).subscribe((alumnos) => {
+          this.dataSource.data = alumnos;
         })
       }
     });
@@ -67,22 +56,14 @@ export class AlumnosComponent implements OnInit{
     });
     dialog.afterClosed().subscribe((value) => {
       if(value){
-        let index = this.dataSource.data.findIndex(item => item.id === alumno.id);
-        this.dataSource.data[index] = value;
-        this.dataSource.data = this.dataSource.data;
+        this.alumnosService.editAlumno(value).subscribe((alumnos) => {
+          this.dataSource.data = alumnos;
+        });
       }
     });
   }
 
   delete(id: number): void{
-    // const dialog = this.matDialog.open(DeleteAlumnosComponent);
-    // dialog.afterClosed().subscribe((value) => {
-    //   if(value){
-    //     this.dataSource.data = this.dataSource.data.filter((alumno) => {
-    //       return alumno.id !== id;});
-    //   }
-    // });
-
     const dialog = this.matDialog.open(DeleteAlumnosComponent);
     dialog.afterClosed().subscribe((value) => {
       if(value){

@@ -29,21 +29,24 @@ export class InscripcionesService {
   } 
 
   createInscripcion(inscripcion: Inscripcion): Observable<Inscripcion[]>{
-    this.inscripciones$.value.push(inscripcion);
-    return this.inscripciones$.asObservable();
+    this.httpClient.post<Inscripcion>(
+      `${enviroment.apiBaseUrl}/inscripciones`, inscripcion)
+      .subscribe();
+    
+    return this.getInscripcionesList();
   }
 
   deleteInscripcion(id: number): Observable<Inscripcion[]>{
-    let index = this.inscripciones$.value.findIndex(item => item.id === id);
-    this.inscripciones$.value.splice(index, 1);;
-    
-    return this.inscripciones$.asObservable();
+    this.httpClient.delete<Inscripcion>(
+      `${enviroment.apiBaseUrl}/inscripciones/`+ id).subscribe();
+
+    return this.getInscripcionesList();
   }
 
   deleteAlumnoInscripcion(idAlumno: number): Observable<Inscripcion[]>{
     for (let i = 0; i < this.inscripciones$.value.length; i++) {
       if(this.inscripciones$.value[i].idAlumno === idAlumno){
-        this.inscripciones$.value.splice(i, 1);
+        this.deleteInscripcion(this.inscripciones$.value[i].id);
       }
     }
 
@@ -53,10 +56,17 @@ export class InscripcionesService {
   deleteCursoInscripcion(idCurso: number): Observable<Inscripcion[]>{
     for (let i = 0; i < this.inscripciones$.value.length; i++) {
       if(this.inscripciones$.value[i].idCurso === idCurso){
-        this.inscripciones$.value.splice(i, 1);
+        this.deleteInscripcion(this.inscripciones$.value[i].id);
       }
     }
 
     return this.inscripciones$.asObservable();
+  }
+
+  editInscripcion(inscripcion: Inscripcion): Observable<Inscripcion[]>{
+    this.httpClient.put<Inscripcion>(
+      `${enviroment.apiBaseUrl}/inscripciones/`+ inscripcion.id, inscripcion).subscribe();
+
+    return this.getInscripcionesList();
   }
 }

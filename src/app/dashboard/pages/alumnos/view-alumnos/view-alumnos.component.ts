@@ -31,8 +31,6 @@ export class ViewAlumnosComponent implements OnDestroy {
     this.alumnosService.getAlumnoById(idAlumno)
     .pipe(takeUntil(this.destroyed$))
     .subscribe((alumno) => this.alumno = alumno);
-
-    console.log(this.alumno)
     
     this.inscripcionesService.getInscripcionesList()
       .subscribe((inscripciones) => {

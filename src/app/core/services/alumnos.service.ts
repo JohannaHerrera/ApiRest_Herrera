@@ -38,14 +38,24 @@ export class AlumnosService {
   // }
 
   createAlumno(alumno: Alumno): Observable<Alumno[]>{
-    this.alumnos$.value.push(alumno);
-    return this.alumnos$.asObservable();
+    this.httpClient.post<Alumno>(
+      `${enviroment.apiBaseUrl}/alumnos`, alumno)
+      .subscribe();
+    
+    return this.getAlumnosList();
   }
 
   deleteAlumno(id: number): Observable<Alumno[]>{
-    let index = this.alumnos$.value.findIndex(item => item.id === id);
-    this.alumnos$.value.splice(index, 1);;
-    
-    return this.alumnos$.asObservable();
+    this.httpClient.delete<Alumno>(
+      `${enviroment.apiBaseUrl}/alumnos/`+ id).subscribe();
+
+    return this.getAlumnosList();
+  }
+
+  editAlumno(alumno: Alumno): Observable<Alumno[]>{
+    this.httpClient.put<Alumno>(
+      `${enviroment.apiBaseUrl}/alumnos/`+ alumno.id, alumno).subscribe();
+
+    return this.getAlumnosList();
   }
 }

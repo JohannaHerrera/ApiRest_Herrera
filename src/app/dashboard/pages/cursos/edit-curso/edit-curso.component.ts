@@ -26,7 +26,6 @@ export class EditCursoComponent {
 
   constructor(private matDialogRef: MatDialogRef<EditCursoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { 
-    console.log(this.data.curso.endDate);
     this.nameControl.setValue(this.data.curso.name); 
     this.descriptionControl.setValue(this.data.curso.description); 
     this.startDateControl.setValue(formatDate(this.data.curso.startDate, 'yyyy-MM-dd','en')); 

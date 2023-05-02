@@ -29,14 +29,24 @@ export class CursosService {
   }
 
   createCurso(curso: Curso): Observable<Curso[]>{
-    this.cursos$.value.push(curso);
-    return this.cursos$.asObservable();
+    this.httpClient.post<Curso>(
+      `${enviroment.apiBaseUrl}/cursos`, curso)
+      .subscribe();
+    
+    return this.getCursosList();
   }
 
   deleteCurso(id: number): Observable<Curso[]>{
-    let index = this.cursos$.value.findIndex(item => item.id === id);
-    this.cursos$.value.splice(index, 1);;
-    
-    return this.cursos$.asObservable();
+    this.httpClient.delete<Curso>(
+      `${enviroment.apiBaseUrl}/cursos/`+ id).subscribe();
+
+    return this.getCursosList();
+  }
+
+  editCurso(curso: Curso): Observable<Curso[]>{
+    this.httpClient.put<Curso>(
+      `${enviroment.apiBaseUrl}/cursos/`+ curso.id, curso).subscribe();
+
+    return this.getCursosList();
   }
 }

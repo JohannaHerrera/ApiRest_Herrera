@@ -34,19 +34,8 @@ export class CursosComponent {
     const dialog = this.matDialog.open(CreateCursoComponent);
     dialog.afterClosed().subscribe((value) => {
       if(value){
-        let idCur = 0;
-        if(this.dataSource.data.length === 0){
-          idCur = 1;
-        }
-        else{
-          idCur = this.dataSource.data[this.dataSource.data.length-1].id + 1;
-        }
-        this.cursosService.createCurso(
-          {
-            ...value,
-            id: idCur
-          }).subscribe((cursos) => {
-              this.dataSource.data = cursos;
+        this.cursosService.createCurso(value).subscribe((cursos) => {
+          this.dataSource.data = cursos;
         })
       }
     });
@@ -66,9 +55,9 @@ export class CursosComponent {
     });
     dialog.afterClosed().subscribe((value) => {
       if(value){
-        let index = this.dataSource.data.findIndex(item => item.id === curso.id);
-        this.dataSource.data[index] = value;
-        this.dataSource.data = this.dataSource.data;
+        this.cursosService.editCurso(value).subscribe((cursos) => {
+          this.dataSource.data = cursos;
+        });
       }
     });
   }

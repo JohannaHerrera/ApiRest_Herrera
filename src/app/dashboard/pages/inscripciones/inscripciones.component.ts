@@ -62,16 +62,9 @@ export class InscripcionesComponent {
           alert('ERROR. El alumno ya está inscrito en este curso.');
         }
         else{
-          let idIns = 0;
-          if(this.dataSource.data.length === 0){
-            idIns = 1;
-          }
-          else{
-            idIns = this.dataSource.data[this.dataSource.data.length-1].id + 1;
-          }
           this.inscripcionesService.createInscripcion(
             {
-              id: idIns,
+              ...value,
               idAlumno: value.alumno,
               idCurso: value.curso
             }).subscribe((inscripciones) => {
@@ -107,13 +100,13 @@ export class InscripcionesComponent {
           alert('ERROR. El alumno ya está inscrito en este curso.');
         }
         else{
-          let index = this.dataSource.data.findIndex(item => item.id === inscripcion.id);
-          this.dataSource.data[index] = {
-            id: value.id,
+          this.inscripcionesService.editInscripcion({
+            ...value,
             idAlumno: value.alumno,
             idCurso: value.curso,
-          };
-          this.dataSource.data = this.dataSource.data;
+          }).subscribe((inscripciones) => {
+            this.dataSource.data = inscripciones;
+          });
           this.updateinscriptionList();
         }
       }
